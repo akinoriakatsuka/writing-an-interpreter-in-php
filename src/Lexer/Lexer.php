@@ -9,7 +9,7 @@ class Lexer
     private string $input;
     private int $position;
     private int $readPosition;
-    private $ch;
+    private int|string $ch;
 
     public function __construct(string $input)
     {
@@ -71,7 +71,7 @@ class Lexer
         return $token;
     }
 
-    private function newToken(string $type, string $ch): Token
+    private function newToken(string $type, int|string $ch): Token
     {
         return new Token($type, $ch);
     }
@@ -113,12 +113,12 @@ class Lexer
         }
     }
 
-    private function isLetter(string $ch): bool
+    private function isLetter(int|string $ch): bool
     {
         return ctype_alpha($ch) || $ch === '_';
     }
 
-    private function isDigit(string $ch): bool
+    private function isDigit(int|string $ch): bool
     {
         return ctype_digit($ch);
     }
