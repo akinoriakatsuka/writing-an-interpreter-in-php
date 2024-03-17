@@ -4,20 +4,25 @@ namespace App\Lexer;
 
 use App\Token\Token;
 
-class Lexer {
-    private $input;
-    private $position;
-    private $readPosition;
+class Lexer
+{
+    private string $input;
+    private int $position;
+    private int $readPosition;
     private $ch;
 
-    public function __construct($input) {
+    public function __construct(string $input)
+    {
         $this->input = $input;
         $this->position = 0;
         $this->readPosition = 0;
         $this->readChar();
     }
 
-    public function nextToken() {
+    public function nextToken(): Token
+    {
+
+        $this->skipWhitespace();
 
         switch ($this->ch) {
             case '=':
@@ -47,6 +52,18 @@ class Lexer {
             case 0:
                 $token = $this->newToken(Token::EOF, "");
                 break;
+            default:
+                if ($this->isLetter($this->ch)) {
+                    $literal = $this->readIdentifier();
+                    $token = $this->newToken(Token::lookupIdent($literal), $literal);
+                    return $token;
+                } elseif ($this->isDigit($this->ch)) {
+                    $literal = $this->readNumber();
+                    $token = $this->newToken(Token::INT, $literal);
+                    return $token;
+                } else {
+                    $token = $this->newToken(Token::ILLEGAL, $this->ch);
+                }
         }
 
         $this->readChar();
@@ -54,11 +71,13 @@ class Lexer {
         return $token;
     }
 
-    private function newToken($type, $ch) {
+    private function newToken(string $type, string $ch): Token
+    {
         return new Token($type, $ch);
     }
 
-    private function readChar() {
+    private function readChar(): void
+    {
         if ($this->readPosition >= strlen($this->input)) {
             $this->ch = 0;
         } else {
@@ -67,5 +86,40 @@ class Lexer {
 
         $this->position = $this->readPosition;
         $this->readPosition += 1;
+    }
+
+    private function readNumber(): string
+    {
+        $position = $this->position;
+        while ($this->isDigit($this->ch)) {
+            $this->readChar();
+        }
+        return substr($this->input, $position, $this->position - $position);
+    }
+
+    private function readIdentifier(): string
+    {
+        $position = $this->position;
+        while ($this->isLetter($this->ch)) {
+            $this->readChar();
+        }
+        return substr($this->input, $position, $this->position - $position);
+    }
+
+    private function skipWhitespace(): void
+    {
+        while ($this->ch === ' ' || $this->ch === "\t" || $this->ch === "\n" || $this->ch === "\r") {
+            $this->readChar();
+        }
+    }
+
+    private function isLetter(string $ch): bool
+    {
+        return ctype_alpha($ch) || $ch === '_';
+    }
+
+    private function isDigit(string $ch): bool
+    {
+        return ctype_digit($ch);
     }
 }

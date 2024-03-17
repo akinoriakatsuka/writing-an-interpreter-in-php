@@ -36,4 +36,14 @@ class Token
     // Keywords
     const FUNCTION = "FUNCTION";
     const LET = "LET";
+
+    public static function lookupIdent(string $ident): string
+    {
+        $keywords = [
+            "fn" => self::FUNCTION,
+            "let" => self::LET,
+        ];
+
+        return $keywords[$ident] ?? self::IDENT;
+    }
 }
