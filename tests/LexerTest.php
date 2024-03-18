@@ -28,6 +28,9 @@ class LexerTest extends TestCase
         } else {
             return false;
         }
+
+        10 == 10;
+        10 != 9;
         END;
 
         $tests = [
@@ -96,6 +99,14 @@ class LexerTest extends TestCase
             [Token::FALSE, "false"],
             [Token::SEMICOLON, ";"],
             [Token::RBRACE, "}"],
+            [Token::INT, "10"],
+            [Token::EQ, "=="],
+            [Token::INT, "10"],
+            [Token::SEMICOLON, ";"],
+            [Token::INT, "10"],
+            [Token::NOT_EQ, "!="],
+            [Token::INT, "9"],
+            [Token::SEMICOLON, ";"],
             [Token::EOF, ""],
         ];
 

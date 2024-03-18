@@ -26,7 +26,13 @@ class Lexer
 
         switch ($this->ch) {
             case '=':
-                $token = $this->newToken(Token::ASSIGN, $this->ch);
+                if ($this->peekChar() === '=') {
+                    $ch = $this->ch;
+                    $this->readChar();
+                    $token = $this->newToken(Token::EQ, $ch . $this->ch);
+                } else {
+                    $token = $this->newToken(Token::ASSIGN, $this->ch);
+                }
                 break;
             case '+':
                 $token = $this->newToken(Token::PLUS, $this->ch);
@@ -35,7 +41,13 @@ class Lexer
                 $token = $this->newToken(Token::MINUS, $this->ch);
                 break;
             case '!':
-                $token = $this->newToken(Token::BANG, $this->ch);
+                if ($this->peekChar() === '=') {
+                    $ch = $this->ch;
+                    $this->readChar();
+                    $token = $this->newToken(Token::NOT_EQ, $ch . $this->ch);
+                } else {
+                    $token = $this->newToken(Token::BANG, $this->ch);
+                }
                 break;
             case '/':
                 $token = $this->newToken(Token::SLASH, $this->ch);
@@ -104,6 +116,15 @@ class Lexer
 
         $this->position = $this->readPosition;
         $this->readPosition += 1;
+    }
+
+    private function peekChar(): int|string
+    {
+        if ($this->readPosition >= strlen($this->input)) {
+            return 0;
+        } else {
+            return $this->input[$this->readPosition];
+        }
     }
 
     private function readNumber(): string

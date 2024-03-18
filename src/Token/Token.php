@@ -31,6 +31,9 @@ class Token
     const LT = "<";
     const GT = ">";
 
+    const EQ = "==";
+    const NOT_EQ = "!=";
+
     // Delimiters
     const COMMA = ",";
     const SEMICOLON = ";";
