@@ -19,6 +19,9 @@ class LexerTest extends TestCase
         };
 
         let result = add(five, ten);
+
+        !-/*5;
+        5 < 10 > 5;
         END;
 
 
@@ -58,6 +61,18 @@ class LexerTest extends TestCase
             [Token::COMMA, ","],
             [Token::IDENT, "ten"],
             [Token::RPAREN, ")"],
+            [Token::SEMICOLON, ";"],
+            [Token::BANG, "!"],
+            [Token::MINUS, "-"],
+            [Token::SLASH, "/"],
+            [Token::ASTERISK, "*"],
+            [Token::INT, "5"],
+            [Token::SEMICOLON, ";"],
+            [Token::INT, "5"],
+            [Token::LT, "<"],
+            [Token::INT, "10"],
+            [Token::GT, ">"],
+            [Token::INT, "5"],
             [Token::SEMICOLON, ";"],
             [Token::EOF, ""],
         ];

@@ -23,6 +23,13 @@ class Token
     // Operators
     const ASSIGN = "=";
     const PLUS = "+";
+    const MINUS = "-";
+    const BANG = "!";
+    const ASTERISK = "*";
+    const SLASH = "/";
+    
+    const LT = "<";
+    const GT = ">";
 
     // Delimiters
     const COMMA = ",";

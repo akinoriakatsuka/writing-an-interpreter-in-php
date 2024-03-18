@@ -28,6 +28,27 @@ class Lexer
             case '=':
                 $token = $this->newToken(Token::ASSIGN, $this->ch);
                 break;
+            case '+':
+                $token = $this->newToken(Token::PLUS, $this->ch);
+                break;
+            case '-':
+                $token = $this->newToken(Token::MINUS, $this->ch);
+                break;
+            case '!':
+                $token = $this->newToken(Token::BANG, $this->ch);
+                break;
+            case '/':
+                $token = $this->newToken(Token::SLASH, $this->ch);
+                break;
+            case '*':
+                $token = $this->newToken(Token::ASTERISK, $this->ch);
+                break;
+            case '<':
+                $token = $this->newToken(Token::LT, $this->ch);
+                break;
+            case '>':
+                $token = $this->newToken(Token::GT, $this->ch);
+                break;
             case ';':
                 $token = $this->newToken(Token::SEMICOLON, $this->ch);
                 break;
@@ -39,9 +60,6 @@ class Lexer
                 break;
             case ',':
                 $token = $this->newToken(Token::COMMA, $this->ch);
-                break;
-            case '+':
-                $token = $this->newToken(Token::PLUS, $this->ch);
                 break;
             case '{':
                 $token = $this->newToken(Token::LBRACE, $this->ch);
