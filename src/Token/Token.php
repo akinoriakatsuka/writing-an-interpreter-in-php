@@ -27,7 +27,7 @@ class Token
     const BANG = "!";
     const ASTERISK = "*";
     const SLASH = "/";
-    
+
     const LT = "<";
     const GT = ">";
 
@@ -43,12 +43,22 @@ class Token
     // Keywords
     const FUNCTION = "FUNCTION";
     const LET = "LET";
+    const TRUE = "TRUE";
+    const FALSE = "FALSE";
+    const IF = "IF";
+    const ELSE = "ELSE";
+    const RETURN = "RETURN";
 
     public static function lookupIdent(string $ident): string
     {
         $keywords = [
             "fn" => self::FUNCTION,
             "let" => self::LET,
+            "true" => self::TRUE,
+            "false" => self::FALSE,
+            "if" => self::IF,
+            "else" => self::ELSE,
+            "return" => self::RETURN,
         ];
 
         return $keywords[$ident] ?? self::IDENT;
