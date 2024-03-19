@@ -154,11 +154,17 @@ class Lexer
 
     private function isLetter(int|string $ch): bool
     {
+        if($ch === 0) {
+            return false;
+        }
         return ctype_alpha($ch) || $ch === '_';
     }
 
     private function isDigit(int|string $ch): bool
     {
+        if($ch === 0) {
+            return false;
+        }
         return ctype_digit($ch);
     }
 }
