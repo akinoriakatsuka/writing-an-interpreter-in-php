@@ -103,7 +103,7 @@ class Lexer
 
     private function newToken(string $type, int|string $ch): Token
     {
-        return new Token($type, $ch);
+        return new Token($type, (string) $ch);
     }
 
     private function readChar(): void

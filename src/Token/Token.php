@@ -5,9 +5,9 @@ namespace App\Token;
 class Token
 {
     public string $type;
-    public int|string $literal;
+    public string $literal;
 
-    public function __construct(string $type, int|string $literal)
+    public function __construct(string $type, string $literal)
     {
         $this->type = $type;
         $this->literal = $literal;
