@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Token;
 
 class Token
@@ -13,44 +15,44 @@ class Token
         $this->literal = $literal;
     }
 
-    const ILLEGAL = "ILLEGAL";
-    const EOF = "EOF";
+    public const ILLEGAL = "ILLEGAL";
+    public const EOF = "EOF";
 
     // Identifiers + literals
-    const IDENT = "IDENT"; // add, foobar, x, y, ...
-    const INT = "INT"; // 1343456
+    public const IDENT = "IDENT"; // add, foobar, x, y, ...
+    public const INT = "INT"; // 1343456
 
     // Operators
-    const ASSIGN = "=";
-    const PLUS = "+";
-    const MINUS = "-";
-    const BANG = "!";
-    const ASTERISK = "*";
-    const SLASH = "/";
+    public const ASSIGN = "=";
+    public const PLUS = "+";
+    public const MINUS = "-";
+    public const BANG = "!";
+    public const ASTERISK = "*";
+    public const SLASH = "/";
 
-    const LT = "<";
-    const GT = ">";
+    public const LT = "<";
+    public const GT = ">";
 
-    const EQ = "==";
-    const NOT_EQ = "!=";
+    public const EQ = "==";
+    public const NOT_EQ = "!=";
 
     // Delimiters
-    const COMMA = ",";
-    const SEMICOLON = ";";
+    public const COMMA = ",";
+    public const SEMICOLON = ";";
 
-    const LPAREN = "(";
-    const RPAREN = ")";
-    const LBRACE = "{";
-    const RBRACE = "}";
+    public const LPAREN = "(";
+    public const RPAREN = ")";
+    public const LBRACE = "{";
+    public const RBRACE = "}";
 
     // Keywords
-    const FUNCTION = "FUNCTION";
-    const LET = "LET";
-    const TRUE = "TRUE";
-    const FALSE = "FALSE";
-    const IF = "IF";
-    const ELSE = "ELSE";
-    const RETURN = "RETURN";
+    public const FUNCTION = "FUNCTION";
+    public const LET = "LET";
+    public const TRUE = "TRUE";
+    public const FALSE = "FALSE";
+    public const IF = "IF";
+    public const ELSE = "ELSE";
+    public const RETURN = "RETURN";
 
     public static function lookupIdent(string $ident): string
     {

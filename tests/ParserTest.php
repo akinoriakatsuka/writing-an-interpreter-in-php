@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests;
 
 use PHPUnit\Framework\TestCase;
@@ -34,7 +36,7 @@ class ParserTest extends TestCase
 
         foreach ($tests as $i => $ident) {
             $stmt = $program->statements[$i];
-            if (!$this->_testLetStatement($stmt, $ident)){
+            if (!$this->_testLetStatement($stmt, $ident)) {
                 return;
             }
         }

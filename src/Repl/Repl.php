@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repl;
 
 use App\Lexer\Lexer;
@@ -7,7 +9,7 @@ use App\Token\Token;
 
 class Repl
 {
-    const PROMPT = ">> ";
+    public const PROMPT = ">> ";
 
     public function start(): void
     {
