@@ -9,6 +9,12 @@ class Identifier implements Expression
     public Token $token;
     public string $value;
 
+    public function __construct(Token $token, string $value)
+    {
+        $this->token = $token;
+        $this->value = $value;
+    }
+
     public function expressionNode(): void
     {
     }
@@ -18,4 +24,3 @@ class Identifier implements Expression
         return $this->token->literal;
     }
 }
-
