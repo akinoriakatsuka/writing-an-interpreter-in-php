@@ -16,6 +16,7 @@ class Parser
     private Lexer $lexer;
     private Token $currentToken;
     private Token $peekToken;
+    private array $errors = [];
 
     public function __construct(Lexer $lexer)
     {
@@ -23,6 +24,20 @@ class Parser
 
         $this->nextToken();
         $this->nextToken();
+    }
+
+    /**
+     * @return array<string>
+     */
+    public function errors(): array
+    {
+        return $this->errors;
+    }
+
+    private function peekError(string $type): void
+    {
+        $msg = sprintf('expected next token to be %s, got %s instead', $type, $this->peekToken->type);
+        $this->errors[] = $msg;
     }
 
     public function parseProgram(): Program
@@ -98,6 +113,7 @@ class Parser
             $this->nextToken();
             return true;
         } else {
+            $this->peekError($type);
             return false;
         }
     }
